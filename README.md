@@ -1,91 +1,51 @@
-# parking-toll-project
-#include <iostream>
-#include <string>
-using namespace std;
+Parking Toll System (Easy C++ Project)
 
-struct Record {
-    string number;
-    int entry;
-    int exit;
-    int fee;
-};
+This is a **simple C++ Parking Toll System** designed for beginners. The project demonstrates a small, practical application of C++ programming, focusing on basic input/output operations, conditional statements, and simple data storage using arrays and structs.
 
-int main() {
-    Record r[50];      // max 50 records
-    int count = 0;
-    int choice;
+It manages vehicle entry, exit, fee calculation, and maintains a simple history of vehicles in the parking lot.
 
-    while (true) {
-        cout << "\n===== PARKING TOLL SYSTEM =====\n";
-        cout << "1. Vehicle Entry\n";
-        cout << "2. Vehicle Exit\n";
-        cout << "3. Show History\n";
-        cout << "4. Exit\n";
-        cout << "Enter choice: ";
-        cin >> choice;
+---
 
-        // Vehicle Entry
-        if (choice == 1) {
-            cout << "\nEnter Vehicle Number: ";
-            cin >> r[count].number;
+## Project Description
 
-            cout << "Enter Entry Time (0-24): ";
-            cin >> r[count].entry;
+The Parking Toll System allows the user to:
 
-            r[count].exit = -1;  // not exited yet
-            r[count].fee = 0;
+1. Record vehicle entries with vehicle number and entry time.
+2. Record vehicle exits, calculate parking fees based on hours parked (flat rate: 50 Rs per hour).
+3. View a history of all vehicles, including their entry time, exit time, and total fees.
 
-            cout << "Entry Added!\n";
-            count++;
-        }
+This project is menu-driven, making it interactive and easy to use. It is suitable for beginners learning C++ programming concepts such as structs, arrays, loops, and conditional statements.
 
-        // Vehicle Exit
-        else if (choice == 2) {
-            string num;
-            cout << "\nEnter Vehicle Number: ";
-            cin >> num;
+---
 
-            bool found = false;
-            for (int i = 0; i < count; i++) {
-                if (r[i].number == num && r[i].exit == -1) {
+ Features
 
-                    cout << "Enter Exit Time (0-24): ";
-                    cin >> r[i].exit;
+* Vehicle Entry: Add vehicle number and entry time.
+* Vehicle Exit: Enter exit time and calculate parking fee.
+* Show History: Display all vehicles with entry, exit, and fee.
+* Easy menu-driven system.
 
-                    int hours = r[i].exit - r[i].entry;
-                    if (hours <= 0) hours = 1;
+---
 
-                    r[i].fee = hours * 50; // flat 50 Rs/hour for simplicity
+ Fee Calculation
 
-                    cout << "Parking Fee: " << r[i].fee << " Rs\n";
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) cout << "Vehicle not found or already exited!\n";
-        }
+* Flat rate: 50 Rs per hour
 
-        // History
-        else if (choice == 3) {
-            cout << "\n---- PARKING HISTORY ----\n";
-            for (int i = 0; i < count; i++) {
-                cout << "Vehicle: " << r[i].number
-                     << " | Entry: " << r[i].entry
-                     << " | Exit: " << (r[i].exit == -1 ? 0 : r[i].exit)
-                     << " | Fee: " << r[i].fee << " Rs\n";
-            }
-        }
+---
 
-        // Exit Program
-        else if (choice == 4) {
-            cout << "\nProgram Ended.\n";
-            break;
-        }
+## Example Run
 
-        else {
-            cout << "Invalid choice!\n";
-        }
-    }
-
-    return 0;
-}
+```
+===== PARKING TOLL SYSTEM =====
+Enter choice: 1
+Enter Vehicle Number: ABC123
+Enter Entry Time (0-24): 9
+Entry Added!
+Enter choice: 2
+Enter Vehicle Number: ABC123
+Enter Exit Time (0-24): 12
+Parking Fee: 150 Rs
+Enter choice: 3
+---- PARKING HISTORY ----
+Vehicle: ABC123 | Entry: 9 | Exit: 12 | Fee: 150 Rs
+```
